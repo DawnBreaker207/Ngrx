@@ -11,7 +11,7 @@ import {provideHttpClient, withInterceptorsFromDi,} from '@angular/common/http';
 import {AuthModule} from './auth/auth.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {EffectsModule} from '@ngrx/effects';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AppRoutingModule} from './app-routing.module';
@@ -34,7 +34,7 @@ import {metaReducers, reducers} from './reducers';
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router', routerState: RouterState.Minimal}),
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()),],
 })
