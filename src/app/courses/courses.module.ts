@@ -25,8 +25,8 @@ import {coursesResolver} from "./courses.resolver";
 import {EffectsModule} from "@ngrx/effects";
 import {CoursesEffects} from "./courses.effects";
 import {StoreModule} from '@ngrx/store';
-import * as fromCourses from './reducers';
-import {coursesReducer} from "./reducers";
+import * as fromCourses from './reducers/course.reducers';
+import {coursesReducer} from "./reducers/course.reducers";
 
 export const coursesRoutes: Routes = [
   {

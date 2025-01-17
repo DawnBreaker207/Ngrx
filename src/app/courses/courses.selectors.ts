@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import * as fromCourses from './reducers/index'
-import {CoursesState} from './reducers/index'
+import * as fromCourses from './reducers/course.reducers'
+import {CoursesState} from './reducers/course.reducers'
 
 export const selectCoursesState = createFeatureSelector<CoursesState>("courses")
 
@@ -21,4 +21,9 @@ export const selectAdvancedCourses = createSelector(
 export const selectPromoTotal = createSelector(
   selectAllCourses,
   courses => courses.filter(course => course.promo).length
+)
+
+export const areCoursesLoaded = createSelector(
+  selectCoursesState,
+  (state: CoursesState) => state.allCoursesLoaded
 )
