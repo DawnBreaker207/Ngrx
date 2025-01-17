@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
-import { Course } from '../model/course';
-import { defaultDialogConfig } from '../shared/default-dialog-config';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
+import {Course} from '../model/course';
+import {defaultDialogConfig} from '../shared/default-dialog-config';
+import {CourseEntityService} from "../services/course-entity.service";
 
 @Component({
   selector: 'courses-card-list',
@@ -17,9 +18,11 @@ export class CoursesCardListComponent implements OnInit {
   @Output()
   courseChanged = new EventEmitter();
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private courseService: CourseEntityService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   editCourse(course: Course) {
     const dialogConfig = defaultDialogConfig();
@@ -36,5 +39,12 @@ export class CoursesCardListComponent implements OnInit {
       .subscribe(() => this.courseChanged.emit());
   }
 
-  onDeleteCourse(course: Course) {}
+  onDeleteCourse(course: Course) {
+    this.courseService.delete(course).subscribe({
+      next: () => console.log("Delete completed"),
+      error: (err) =>
+        console.log("Deleted failed", err)
+    })
+
+  }
 }
