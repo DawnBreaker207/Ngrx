@@ -21,11 +21,15 @@ import {CoursesCardListComponent} from './courses-card-list/courses-card-list.co
 import {EditCourseDialogComponent} from './edit-course-dialog/edit-course-dialog.component';
 import {HomeComponent} from './home/home.component';
 import {CoursesHttpService} from './services/courses-http.service';
+import {coursesResolver} from "./courses.resolver";
 
 export const coursesRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    resolve: {
+      courses: coursesResolver,
+    }
   },
   {
     path: ':courseUrl',
@@ -65,8 +69,9 @@ export const coursesRoutes: Routes = [
     EditCourseDialogComponent,
     CourseComponent,
   ],
-  providers: [CoursesHttpService],
+  providers: [CoursesHttpService, {provide: 'coursesResolver', useValue: coursesResolver}],
 })
 export class CoursesModule {
-  constructor() {}
+  constructor() {
+  }
 }
