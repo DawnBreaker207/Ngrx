@@ -31,7 +31,14 @@ import {metaReducers, reducers} from './reducers';
     MatListModule,
     MatToolbarModule,
     AuthModule.forRoot(),
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, {
+      metaReducers, runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictStateSerializability: true
+      }
+    }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({stateKey: 'router', routerState: RouterState.Minimal}),
