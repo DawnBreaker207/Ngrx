@@ -13,7 +13,7 @@ import {CoursesHttpService} from '../services/courses-http.service';
 })
 export class EditCourseDialogComponent {
 
-  form: FormGroup;
+  form!: FormGroup;
 
   dialogTitle: string;
 
@@ -21,7 +21,7 @@ export class EditCourseDialogComponent {
 
   mode: 'create' | 'update';
 
-  loading$:Observable<boolean>;
+  loading$!:Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,

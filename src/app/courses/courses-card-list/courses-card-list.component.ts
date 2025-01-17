@@ -13,7 +13,7 @@ import {defaultDialogConfig} from '../shared/default-dialog-config';
 export class CoursesCardListComponent implements OnInit {
 
   @Input()
-  courses: Course[];
+  courses!: Course[];
 
   @Output()
   courseChanged = new EventEmitter();
