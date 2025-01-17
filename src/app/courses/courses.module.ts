@@ -24,8 +24,9 @@ import {CoursesHttpService} from './services/courses-http.service';
 import {coursesResolver} from "./courses.resolver";
 import {EffectsModule} from "@ngrx/effects";
 import {CoursesEffects} from "./courses.effects";
-import { StoreModule } from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import * as fromCourses from './reducers';
+import {coursesReducer} from "./reducers";
 
 export const coursesRoutes: Routes = [
   {
@@ -61,7 +62,7 @@ export const coursesRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
     EffectsModule.forFeature([CoursesEffects]),
-    StoreModule.forFeature(fromCourses.coursesFeatureKey, fromCourses.reducers, { metaReducers: fromCourses.metaReducers })
+    StoreModule.forFeature("courses", coursesReducer)
   ],
   declarations: [
     HomeComponent,
