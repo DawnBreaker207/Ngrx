@@ -19,3 +19,4 @@ export const coursesReducer = createReducer(
   )
 )
 
+export const {selectAll} = adapter.getSelectors();
